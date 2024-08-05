@@ -3,10 +3,13 @@ import {
   presetUno,
   transformerDirectives,
   transformerVariantGroup,
+  presetTypography,
 } from "unocss";
 
+const LAYOUT_SPACE = "2.25rem";
+
 export default defineConfig({
-  presets: [presetUno()],
+  presets: [presetUno(), presetTypography()],
   transformers: [transformerVariantGroup(), transformerDirectives()],
   theme: {
     colors: {
@@ -44,24 +47,24 @@ export default defineConfig({
         switch (dir) {
           case "x":
             return {
-              [`${prop}-left`]: theme.spacing!.xs,
-              [`${prop}-right`]: theme.spacing!.xs,
+              [`${prop}-left`]: LAYOUT_SPACE,
+              [`${prop}-right`]: LAYOUT_SPACE,
             };
           case "y":
             return {
-              [`${prop}-top`]: theme.spacing!.xs,
-              [`${prop}-bottom`]: theme.spacing!.xs,
+              [`${prop}-top`]: LAYOUT_SPACE,
+              [`${prop}-bottom`]: LAYOUT_SPACE,
             };
           case "r":
-            return { [`${prop}-right`]: theme.spacing!.xs };
+            return { [`${prop}-right`]: LAYOUT_SPACE };
           case "l":
-            return { [`${prop}-left`]: theme.spacing!.xs };
+            return { [`${prop}-left`]: LAYOUT_SPACE };
           case "t":
-            return { [`${prop}-top`]: theme.spacing!.xs };
+            return { [`${prop}-top`]: LAYOUT_SPACE };
           case "b":
-            return { [`${prop}-bottom`]: theme.spacing!.xs };
+            return { [`${prop}-bottom`]: LAYOUT_SPACE };
           default:
-            return { [prop]: theme.spacing!.xs };
+            return { [prop]: LAYOUT_SPACE };
         }
       },
     ],
@@ -69,13 +72,13 @@ export default defineConfig({
       /^gap(-(x|y|col|row))?-layout$/,
       ([, dir], { theme }) => {
         if (["-x", "-col"].includes(dir)) {
-          return { "column-gap": theme.spacing!.xs };
+          return { "column-gap": LAYOUT_SPACE };
         }
         if (["-y", "-row"].includes(dir)) {
-          return { "row-gap": theme.spacing!.xs };
+          return { "row-gap": LAYOUT_SPACE };
         }
 
-        return { gap: theme.spacing!.xs };
+        return { gap: LAYOUT_SPACE };
       },
     ],
   ],
