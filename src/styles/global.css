@@ -27,6 +27,7 @@
 }
 
 body {
+  @apply min-w-screen min-h-screen;
   @apply bg-background text-foreground;
   @apply font-sans antialiased;
 }
@@ -37,10 +38,6 @@ body {
     @apply transition-property-colors transition-duration-150 transition-ease-in-out;
   }
 } */
-
-#app {
-  @apply min-w-screen min-h-screen;
-}
 
 * {
   @apply border-border;
