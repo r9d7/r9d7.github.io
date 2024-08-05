@@ -1,0 +1,46 @@
+---
+import { Container } from "../components/Container";
+import { Navigation } from "../components/Navigation";
+
+import "../styles/global.css";
+
+const { pageTitle: _pageTitle } = Astro.props;
+
+const pageTitle = [_pageTitle, "r9d7"].filter(Boolean).join(" / ");
+---
+
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{pageTitle}</title>
+  </head>
+
+  <body
+    class="flex flex-col gap-layout py-layout [&>div:nth-of-type(2)]:grow-1"
+  >
+    <Container>
+      <header>
+        <Navigation />
+      </header>
+    </Container>
+
+    <hr />
+
+    <Container>
+      <main>
+        <slot />
+      </main>
+    </Container>
+
+    <hr />
+
+    <Container>
+      <footer>fdsfs</footer>
+    </Container>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+---
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+
+import BaseLayout from "./BaseLayout.astro";
+
+dayjs.extend(utc);
+
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout pageTitle={frontmatter.title}>
+  <div class="prose max-w-none">
+    <div class="flex gap-1 text-sm text-muted-foreground">
+      {
+        dayjs(frontmatter.pubDate.toString().slice(0, 10)).format(
+          "DD MMMM, YYYY",
+        )
+      }
+
+      <span>•</span>
+
+      {frontmatter.readingTime}
+    </div>
+
+    <h1>{frontmatter.title}</h1>
+
+    <div class="py-4.5">
+      <img src={frontmatter.image.url} alt={frontmatter.image.alt} />
+    </div>
+  </div>
+
+  <article class="prose max-w-none">
+    <slot />
+  </article>
+</BaseLayout>
