@@ -46,3 +46,8 @@ body {
     @apply focus-(outline-none ring-2 ring-ring ring-offset-2 ring-offset-background);
   }
 }
+
+a {
+  @apply underline underline-4 underline-accent;
+  @apply hover:underline-foreground;
+}
