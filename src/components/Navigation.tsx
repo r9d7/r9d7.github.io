@@ -8,12 +8,12 @@ export function Navigation() {
   ];
 
   return (
-    <nav class="flex gap-1">
+    <nav class="flex gap-2 md:gap-4">
       {navigationItems.map((item, i) => (
         <>
           <a href={item.href}>{item.displayText}</a>
           <Show when={i !== navigationItems.length - 1}>
-            <span class="text-muted-foreground">/</span>
+            <span>/</span>
           </Show>
         </>
       ))}

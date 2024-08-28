@@ -25,20 +25,20 @@ const pageTitle = [_pageTitle, "r9d7"].filter(Boolean).join(" / ");
     class="flex flex-col gap-8 py-8 md-(gap-16 py-16) [&>div:nth-of-type(2)]:grow-1"
   >
     <Container>
-      <header>
+      <header class="flex gap-2 text-muted-foreground">
+        <a href="/" class="no-underline">@r9d7</a>
+        
+        <span>:</span>
+        
         <Navigation />
       </header>
     </Container>
-
-    <hr />
 
     <Container>
       <main class="prose max-w-none">
         <slot />
       </main>
     </Container>
-
-    <hr />
 
     <Container>
       <footer>
