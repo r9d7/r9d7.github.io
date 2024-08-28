@@ -51,3 +51,11 @@ a {
   @apply underline underline-4 underline-accent;
   @apply hover:underline-foreground;
 }
+
+:not(.not-prose) ~ details {
+  @apply border border-border;
+}
+
+#toc {
+  @apply hidden;
+}
