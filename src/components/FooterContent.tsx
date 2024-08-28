@@ -1,9 +1,9 @@
+import dayjs from "dayjs";
+
 export function FooterContent() {
   return (
-    <div class="flex justify-between">
-      <div>r9d7 © 2024</div>
-
-      <div>back to top</div>
-    </div>
+    <p class="text-center text-sm uppercase text-muted-foreground font-medium">
+      © {dayjs().year()} Radu Dascalu. All rights reserved. Have a nice day!
+    </p>
   );
 }
