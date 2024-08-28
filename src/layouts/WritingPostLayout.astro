@@ -12,7 +12,6 @@ console.log(">>", getHeadings);
 ---
 
 <BaseLayout pageTitle={frontmatter.title}>
-  <div class="prose max-w-none">
     <div class="flex gap-1 text-sm text-muted-foreground">
       {
         dayjs(frontmatter.pubDate.toString().slice(0, 10)).format(
@@ -29,10 +28,9 @@ console.log(">>", getHeadings);
 
     <div class="py-4.5">
       <img src={frontmatter.image.url} alt={frontmatter.image.alt} />
-    </div>
   </div>
 
-  <article class="prose max-w-none">
+  <article>
     <slot />
   </article>
 </BaseLayout>
