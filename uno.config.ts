@@ -6,8 +6,6 @@ import {
   presetTypography,
 } from "unocss";
 
-const LAYOUT_SPACE = "2.25rem";
-
 export default defineConfig({
   presets: [presetUno(), presetTypography()],
   transformers: [transformerVariantGroup(), transformerDirectives()],
@@ -38,48 +36,4 @@ export default defineConfig({
       "2xl": "calc(var(--radius) + 4px)",
     },
   },
-  rules: [
-    [
-      /^(p|m)(x|y|r|l|t|b)?-layout$/,
-      ([, prop, dir], { theme, ...r }) => {
-        prop = prop === "p" ? "padding" : "margin";
-
-        switch (dir) {
-          case "x":
-            return {
-              [`${prop}-left`]: LAYOUT_SPACE,
-              [`${prop}-right`]: LAYOUT_SPACE,
-            };
-          case "y":
-            return {
-              [`${prop}-top`]: LAYOUT_SPACE,
-              [`${prop}-bottom`]: LAYOUT_SPACE,
-            };
-          case "r":
-            return { [`${prop}-right`]: LAYOUT_SPACE };
-          case "l":
-            return { [`${prop}-left`]: LAYOUT_SPACE };
-          case "t":
-            return { [`${prop}-top`]: LAYOUT_SPACE };
-          case "b":
-            return { [`${prop}-bottom`]: LAYOUT_SPACE };
-          default:
-            return { [prop]: LAYOUT_SPACE };
-        }
-      },
-    ],
-    [
-      /^gap(-(x|y|col|row))?-layout$/,
-      ([, dir], { theme }) => {
-        if (["-x", "-col"].includes(dir)) {
-          return { "column-gap": LAYOUT_SPACE };
-        }
-        if (["-y", "-row"].includes(dir)) {
-          return { "row-gap": LAYOUT_SPACE };
-        }
-
-        return { gap: LAYOUT_SPACE };
-      },
-    ],
-  ],
 });
