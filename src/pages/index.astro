@@ -10,7 +10,7 @@ const allPosts = await Astro.glob("./content/writing/*.md");
 ---
 
 <BaseLayout pageTitle="Home">
-  <ul class="not-prose space-y-3">
+  <ul class="space-y-3">
     {
       allPosts
         .sort((a, b) =>
@@ -19,8 +19,8 @@ const allPosts = await Astro.glob("./content/writing/*.md");
             : 1,
         )
         .map((post) => (
-          <li class="grid grid-cols-[1fr_6fr]">
-            <span class="text-muted-foreground">
+          <li>
+            <span class="inline-flex w-84px sm:w-100px text-muted-foreground">
               {dayjs(post.frontmatter.pubDate).format("YYYY • MM")}
             </span>
             <a href={post.url}>{post.frontmatter.title}</a>
