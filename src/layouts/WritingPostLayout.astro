@@ -10,7 +10,7 @@ const { frontmatter } = Astro.props;
 ---
 
 <BaseLayout pageTitle={frontmatter.title}>
-  <div>
+  <div class="prose max-w-none">
     <div class="flex gap-1 text-sm text-muted-foreground">
       {
         dayjs(frontmatter.pubDate.toString().slice(0, 10)).format(
@@ -30,7 +30,7 @@ const { frontmatter } = Astro.props;
     </div>
   </div>
 
-  <article>
+  <article class="prose max-w-none">
     <slot />
   </article>
 </BaseLayout>
