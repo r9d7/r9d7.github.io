@@ -1,19 +1,47 @@
 ---
+import groupBy from "lodash.groupby";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
 
+dayjs.extend(utc);
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { MagicAnchor } from "../components/MagicAnchor";
+
+const allPosts = await Astro.glob("./content/writing/*.md");
+
+const postsGroupedByDate = groupBy(
+  allPosts,
+  ({ frontmatter }) => frontmatter.pubDate,
+);
+const sortedPostsGroupedByDateKeys = Object.keys(postsGroupedByDate).sort(
+  (a, b) => (dayjs(a).isAfter(dayjs(b)) ? -1 : 1),
+);
 ---
 
-<html lang="en">
-	<head>
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
+<BaseLayout pageTitle="Home">
+  <>
+    {
+      sortedPostsGroupedByDateKeys.map((date, i) => (
+        <details open={i === 0}>
+          <summary class="text-lg">{dayjs(date).format("YYYY")}</summary>
 
-		<title>Astro</title>
-	</head>
-	
-	<body>
-		<h1>Hello World</h1>
-	</body>
-</html>
+          <ul class="py-layout flex flex-col gap-4.5">
+            {postsGroupedByDate[date].map((post) => (
+              <li>
+                <MagicAnchor
+                  href={post.url}
+                  imgUrl={post.frontmatter.image.url}
+                  charmingText={post.frontmatter.title}
+                  client:load
+                />
+
+                <p>{post.frontmatter.description}</p>
+              </li>
+            ))}
+          </ul>
+        </details>
+      ))
+    }
+  </>
+</BaseLayout>

@@ -6,7 +6,9 @@ import BaseLayout from "./BaseLayout.astro";
 
 dayjs.extend(utc);
 
-const { frontmatter } = Astro.props;
+const { frontmatter, getHeadings } = Astro.props;
+
+console.log(">>", getHeadings);
 ---
 
 <BaseLayout pageTitle={frontmatter.title}>

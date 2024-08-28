@@ -8,6 +8,9 @@ dependencies:
   '@astrojs/check':
     specifier: ^0.9.1
     version: 0.9.1(prettier-plugin-astro@0.14.1)(prettier@3.3.3)(typescript@5.5.4)
+  '@astrojs/markdown-remark':
+    specifier: ^5.2.0
+    version: 5.2.0
   '@astrojs/rss':
     specifier: ^4.0.7
     version: 4.0.7
@@ -20,12 +23,21 @@ dependencies:
   dayjs:
     specifier: ^1.11.12
     version: 1.11.12
+  gsap:
+    specifier: ^3.12.5
+    version: 3.12.5
+  lodash.groupby:
+    specifier: ^4.6.0
+    version: 4.6.0
   mdast-util-to-string:
     specifier: ^4.0.0
     version: 4.0.0
   reading-time:
     specifier: ^1.5.0
     version: 1.5.0
+  remark-toc:
+    specifier: ^9.0.0
+    version: 9.0.0
   solid-js:
     specifier: ^1.8.19
     version: 1.8.19
@@ -34,6 +46,9 @@ dependencies:
     version: 5.5.4
 
 devDependencies:
+  '@types/lodash.groupby':
+    specifier: ^4.6.9
+    version: 4.6.9
   '@unocss/reset':
     specifier: ^0.61.9
     version: 0.61.9
@@ -1166,6 +1181,16 @@ packages:
       '@types/unist': 3.0.2
     dev: false
 
+  /@types/lodash.groupby@4.6.9:
+    resolution: {integrity: sha512-z2xtCX2ko7GrqORnnYea4+ksT7jZNAvaOcLd6mP9M7J09RHvJs06W8BGdQQAX8ARef09VQLdeRilSOcfHlDQJQ==}
+    dependencies:
+      '@types/lodash': 4.17.7
+    dev: true
+
+  /@types/lodash@4.17.7:
+    resolution: {integrity: sha512-8wTvZawATi/lsmNu10/j2hk1KEP0IvjubqPE3cu1Xz7xfXXt5oCq3SNUz4fMIP4XGF9Ky+Ue2tBA3hcS7LSBlA==}
+    dev: true
+
   /@types/mdast@4.0.4:
     resolution: {integrity: sha512-kGaNbPh1k7AFzgpud/gMdvIm5xuECykRR+JnWKQno9TAXVa6WIVCGTPvYGekIDL4uwCZQSYbUxNBSb1aUo79oA==}
     dependencies:
@@ -1180,6 +1205,10 @@ packages:
     resolution: {integrity: sha512-vSYNSDe6Ix3q+6Z7ri9lyWqgGhJTmzRjZRqyq15N0Z/1/UnVsno9G/N40NBijoYx2seFDIl0+B2mgAb9mezUCA==}
     dependencies:
       '@types/unist': 3.0.2
+    dev: false
+
+  /@types/ungap__structured-clone@1.2.0:
+    resolution: {integrity: sha512-ZoaihZNLeZSxESbk9PUAPZOlSpcKx81I1+4emtULDVmBLkYutTcMlCj2K9VNlf9EWODxdO6gkAqEaLorXwZQVA==}
     dev: false
 
   /@types/unist@3.0.2:
@@ -2239,6 +2268,10 @@ packages:
       strip-bom-string: 1.0.0
     dev: false
 
+  /gsap@3.12.5:
+    resolution: {integrity: sha512-srBfnk4n+Oe/ZnMIOXt3gT605BX9x5+rh/prT2F1SsNJsU1XuMiP0E2aptW481OnonOGACZWBqseH5Z7csHxhQ==}
+    dev: false
+
   /gzip-size@6.0.0:
     resolution: {integrity: sha512-ax7ZYomf6jqPTQ4+XCpUGyXKHk5WweS+e05MBO4/y3WJ5RkmPXNKvX+bx1behVILVwr6JSQvZAku021CHPXG3Q==}
     engines: {node: '>=10'}
@@ -2596,6 +2629,10 @@ packages:
       p-locate: 5.0.0
     dev: true
 
+  /lodash.groupby@4.6.0:
+    resolution: {integrity: sha512-5dcWxm23+VAoz+awKmBaiBvzox8+RqMgFhi7UvX9DHZr2HdxHXM/Wrf8cfKpsW37RNrvtPn6hSwNqurSILbmJw==}
+    dev: false
+
   /log-symbols@6.0.0:
     resolution: {integrity: sha512-i24m8rpwhmPIS4zscNzK6MSEhk0DUWa/8iYQWxhffV8jkI4Phvs3F+quL5xvS0gdQR0FyTCMMH33Y78dDTzzIw==}
     engines: {node: '>=18'}
@@ -2765,6 +2802,18 @@ packages:
     resolution: {integrity: sha512-0H44vDimn51F0YwvxSJSm0eCDOJTRlmN0R1yBh4HLj9wiV1Dn0QoXGbvFAWj2hSItVTlCmBF1hqKlIyUBVFLPg==}
     dependencies:
       '@types/mdast': 4.0.4
+    dev: false
+
+  /mdast-util-toc@7.1.0:
+    resolution: {integrity: sha512-2TVKotOQzqdY7THOdn2gGzS9d1Sdd66bvxUyw3aNpWfcPXCLYSJCCgfPy30sEtuzkDraJgqF35dzgmz6xlvH/w==}
+    dependencies:
+      '@types/mdast': 4.0.4
+      '@types/ungap__structured-clone': 1.2.0
+      '@ungap/structured-clone': 1.2.0
+      github-slugger: 2.0.0
+      mdast-util-to-string: 4.0.0
+      unist-util-is: 6.0.0
+      unist-util-visit: 5.0.0
     dev: false
 
   /mdn-data@2.0.30:
@@ -3409,6 +3458,13 @@ packages:
       '@types/mdast': 4.0.4
       mdast-util-to-markdown: 2.1.0
       unified: 11.0.5
+    dev: false
+
+  /remark-toc@9.0.0:
+    resolution: {integrity: sha512-KJ9txbo33GjDAV1baHFze7ij4G8c7SGYoY8Kzsm2gzFpbhL/bSoVpMMzGa3vrNDSWASNd/3ppAqL7cP2zD6JIA==}
+    dependencies:
+      '@types/mdast': 4.0.4
+      mdast-util-toc: 7.1.0
     dev: false
 
   /request-light@0.7.0:

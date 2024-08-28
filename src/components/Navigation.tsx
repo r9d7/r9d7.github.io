@@ -3,7 +3,7 @@ import { Show } from "solid-js";
 export function Navigation() {
   const navigationItems = [
     { href: "/", displayText: "home" },
-    { href: "/blog", displayText: "blog" },
+    { href: "/writing", displayText: "writing" },
     { href: "/about", displayText: "about" },
   ];
 
@@ -11,9 +11,7 @@ export function Navigation() {
     <nav class="flex gap-1">
       {navigationItems.map((item, i) => (
         <>
-          <a href={item.href} class="underline">
-            {item.displayText}
-          </a>
+          <a href={item.href}>{item.displayText}</a>
           <Show when={i !== navigationItems.length - 1}>
             <span class="text-muted-foreground">/</span>
           </Show>
