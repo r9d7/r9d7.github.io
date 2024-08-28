@@ -5,8 +5,9 @@ import utc from "dayjs/plugin/utc";
 
 dayjs.extend(utc);
 
-import BaseLayout from "../layouts/BaseLayout.astro";
-import { MagicAnchor } from "../components/MagicAnchor";
+import BaseLayout from "~/layouts/BaseLayout.astro";
+
+import { MagicAnchor } from "~/components/MagicAnchor";
 
 const allPosts = await Astro.glob("./content/writing/*.md");
 
