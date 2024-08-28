@@ -20,11 +20,10 @@ const sortedPostsGroupedByDateKeys = Object.keys(postsGroupedByDate).sort(
 ---
 
 <BaseLayout pageTitle="Home">
-  <>
     {
       sortedPostsGroupedByDateKeys.map((date, i) => (
-        <details open={i === 0}>
-          <summary class="text-lg">{dayjs(date).format("YYYY")}</summary>
+        <details open={i === 0} class="not-prose">
+          <summary class="text-lg cursor-pointer">{dayjs(date).format("YYYY")}</summary>
 
           <ul class="py-layout flex flex-col gap-4.5">
             {postsGroupedByDate[date].map((post) => (
@@ -43,5 +42,4 @@ const sortedPostsGroupedByDateKeys = Object.keys(postsGroupedByDate).sort(
         </details>
       ))
     }
-  </>
 </BaseLayout>
