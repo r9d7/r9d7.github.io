@@ -3,8 +3,8 @@ import { Show } from "solid-js";
 export function Navigation() {
   const navigationItems = [
     { href: "/", displayText: "home" },
-    { href: "/writing", displayText: "writing" },
-    { href: "/about", displayText: "about" },
+    // { href: "/writing", displayText: "writing" },
+    // { href: "/about", displayText: "about" },
   ];
 
   return (
