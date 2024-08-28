@@ -47,9 +47,9 @@ body {
   }
 }
 
-a, :has(.prose) ~ a {
-  @apply !underline !underline-4 !underline-accent;
-  @apply !hover:underline-foreground;
+a {
+  @apply underline;
+  @apply hover-(underline-accent underline-6);
 }
 
 :not(.not-prose) ~ details {
