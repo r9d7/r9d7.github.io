@@ -8,14 +8,14 @@
   --accent: 273 100% 50%;
   --accent-foreground: var(--background);
 
-  --border: var(--muted);
+  --border: var(--foreground);
 
   --ring: var(--accent);
 
   --radius: 0.75rem;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: 0 0% 0%;
     --foreground: 0 0% 100%;
@@ -24,23 +24,17 @@
 
     --accent-foreground: var(--foreground);
   }
-}
+} */
 
 body {
   @apply min-w-screen min-h-screen;
   @apply bg-background text-foreground;
-  @apply font-sans antialiased;
+  @apply font-[Inconsolata,_monospace] antialiased;
 }
-
-/* body {
-  &,
-  & * {
-    @apply transition-property-colors transition-duration-150 transition-ease-in-out;
-  }
-} */
 
 * {
   @apply border-border;
+  @apply transition-property-colors transition-duration-150 transition-ease-in-out;
 
   &:focus {
     @apply focus-(outline-none ring-2 ring-ring ring-offset-2 ring-offset-background);
@@ -48,12 +42,8 @@ body {
 }
 
 a {
-  @apply underline;
-  @apply hover-(underline-accent underline-6);
-}
-
-:not(.not-prose) ~ details {
-  @apply border border-border;
+  @apply !no-underline border-b-2 border-dotted;
+  @apply hover-(border-transparent bg-accent text-accent-foreground);
 }
 
 #toc {
