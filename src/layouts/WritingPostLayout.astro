@@ -30,7 +30,13 @@ const { frontmatter } = Astro.props;
     </div>
   </div>
 
-  <article class="prose max-w-none">
+  <article
+    class={[
+      "prose max-w-none",
+      "[&>details]-(border-2 border-dotted rounded-lg)",
+      "[&>*:last-child]:mb-0",
+    ].join(" ")}
+  >
     <slot />
   </article>
 </BaseLayout>

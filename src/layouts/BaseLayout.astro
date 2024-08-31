@@ -21,16 +21,17 @@ const pageTitle = [_pageTitle, "r9d7"].filter(Boolean).join(" / ");
     <title>{pageTitle}</title>
   </head>
 
-  <body
-    class="flex flex-col gap-8 py-8 md-(gap-16 py-16) [&>div:nth-of-type(2)]:grow-1"
-  >
-    <Container>
-      <header class="flex gap-2 text-muted-foreground">
-        <a href="/" class="no-underline">@r9d7</a>
-        
-        <span>:</span>
-        
-        <Navigation />
+  <body class="flex flex-col gap-8 [&>div:nth-of-type(2)]:grow-1 py-4 relative">
+    <Container class="sticky top-0">
+      <header class="bg-background rounded-b-lg">
+        <div class="flex gap-2 p-4 border-2 border-dotted rounded-lg">
+          <a href="/" class="border-0 bg-accent text-accent-foreground">@r9d7</a
+          >
+
+          <span>:</span>
+
+          <Navigation />
+        </div>
       </header>
     </Container>
 
@@ -41,7 +42,7 @@ const pageTitle = [_pageTitle, "r9d7"].filter(Boolean).join(" / ");
     </Container>
 
     <Container>
-      <footer>
+      <footer class="border-t-2 border-dotted pt-4">
         <FooterContent />
       </footer>
     </Container>
