@@ -20,6 +20,10 @@
   }
 } */
 
+html.fluid {
+  @apply xl:text-[1.27vw];
+}
+
 body {
   @apply bg-background text-foreground;
   @apply bg-gradient-to-tr from-accent/80 to-40%;
