@@ -84,14 +84,13 @@ const pageTitle = [_pageTitle, "r9d7"].filter(Boolean).join(" / ");
                   { href: "https://astro.build/", displayText: "Astro" },
                   { href: "https://www.solidjs.com/", displayText: "Solid.js" },
                   { href: "https://unocss.dev/", displayText: "UnoCSS" },
-                ].map(({ href, displayText }, i) => (
-                  <>
+                ]
+                  .map(({ href, displayText }, i) => (
                     <a href={href} target="_blank">
                       {displayText}
                     </a>
-                    ,
-                  </>
-                ))
+                  ))
+                  .reduce((prev, curr) => [prev, ", ", curr])
               }
             </p>
             <p>
