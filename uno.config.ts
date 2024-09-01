@@ -4,20 +4,26 @@ import {
   transformerDirectives,
   transformerVariantGroup,
   presetTypography,
+  presetWebFonts,
 } from "unocss";
 
 export default defineConfig({
-  presets: [presetUno(), presetTypography()],
+  presets: [
+    presetUno(),
+    presetWebFonts({
+      provider: "bunny",
+      fonts: {
+        sans: "Hanken Grotesk",
+        serif: "Source Serif Pro",
+      },
+    }),
+    presetTypography(),
+  ],
   transformers: [transformerVariantGroup(), transformerDirectives()],
   theme: {
     colors: {
       background: "hsl(var(--background))",
       foreground: "hsl(var(--foreground))",
-
-      muted: {
-        DEFAULT: "hsl(var(--muted))",
-        foreground: "hsl(var(--muted-foreground))",
-      },
 
       accent: {
         DEFAULT: "hsl(var(--accent))",
@@ -36,4 +42,23 @@ export default defineConfig({
       "2xl": "calc(var(--radius) + 4px)",
     },
   },
+  rules: [
+    [
+      /bg-screen/,
+      () => `
+          .bg-screen {
+            background: linear-gradient(rgba(75, 55, 231, 0.3) 50%, transparent 50%),
+              linear-gradient(
+                90deg,
+                rgba(64, 55, 55, 0.09),
+                rgba(64, 181, 64, 0.03),
+                rgba(0, 0, 255, 0.06)
+              );
+            background-size:
+              100% 2px,
+              3px 100%;
+          }
+        `,
+    ],
+  ],
 });

@@ -1,15 +1,11 @@
 :root {
-  --background: 0 0% 100%;
+  --background: 0 0% 97%;
   --foreground: 0 0% 0%;
 
-  --muted: 0 0% 92%;
-  --muted-foreground: 0 0% 50%;
-
-  --accent: 273 100% 50%;
+  --accent: 255 45% 45%;
   --accent-foreground: var(--background);
 
   --border: var(--foreground);
-
   --ring: var(--accent);
 
   --radius: 0.75rem;
@@ -18,18 +14,16 @@
 /* @media (prefers-color-scheme: dark) {
   :root {
     --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
-
-    --muted: 0 0% 8%;
+    --foreground: 0 0% 97%;
 
     --accent-foreground: var(--foreground);
   }
 } */
 
 body {
-  @apply min-w-screen min-h-screen;
   @apply bg-background text-foreground;
-  @apply font-[Inconsolata,_monospace] antialiased;
+  @apply bg-gradient-to-tr from-accent/80 to-40%;
+  @apply font-sans antialiased;
 }
 
 * {
@@ -44,6 +38,15 @@ body {
 a {
   @apply !no-underline border-b-2 border-dotted;
   @apply hover-(border-transparent bg-accent text-accent-foreground);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-serif;
 }
 
 #toc {

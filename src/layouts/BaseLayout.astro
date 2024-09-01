@@ -1,7 +1,5 @@
 ---
 import { Container } from "~/components/Container";
-import { FooterContent } from "~/components/FooterContent";
-import { Navigation } from "~/components/Navigation";
 
 import "~/styles/global.css";
 
@@ -21,30 +19,96 @@ const pageTitle = [_pageTitle, "r9d7"].filter(Boolean).join(" / ");
     <title>{pageTitle}</title>
   </head>
 
-  <body class="flex flex-col gap-8 [&>div:nth-of-type(2)]:grow-1 py-4 relative">
-    <Container class="sticky top-0">
-      <header class="bg-background rounded-b-lg">
-        <div class="flex gap-2 p-4 border-2 border-dotted rounded-lg">
-          <a href="/" class="border-0 bg-accent text-accent-foreground">@r9d7</a
+  <body>
+    <div
+      class="w-full min-h-screen bg-screen flex flex-col p-4 gap-4 sm-(p-8 gap-8)"
+    >
+      <Container>
+        <header
+          class="bg-accent text-accent-foreground flex items-center justify-between px-2"
+        >
+          <a
+            href="/"
+            class="font-serif font-bold border-0 text-xl md:text-3xl -ml-1"
+            >R9D7</a
           >
 
-          <span>:</span>
+          <nav class="flex gap-2 sm:gap-6">
+            {
+              [
+                { href: "/", displayText: "home" },
+                { href: "/about", displayText: "about" },
+                // { href: "/writing", displayText: "writing" },
+                // { href: "/projects", displayText: "projects" },
+                {
+                  href: "https://agate-shingle-f97.notion.site/Radu-Dascalu-74c2120d6aad4ad2a6b48ee4ece69de9",
+                  displayText: "resume",
+                },
+                { href: "/rss.xml", displayText: "rss feed" },
+              ].map(({ href, displayText }) => (
+                <a
+                  href={href}
+                  target={displayText === "resume" ? "_blank" : undefined}
+                  class="border-accent-foreground"
+                >
+                  /{displayText}
+                </a>
+              ))
+            }
+          </nav>
+        </header>
+      </Container>
 
-          <Navigation />
-        </div>
-      </header>
-    </Container>
+      <Container class="grow-1">
+        <main>
+          <slot />
+        </main>
+      </Container>
 
-    <Container>
-      <main>
-        <slot />
-      </main>
-    </Container>
+      <Container>
+        <footer
+          class="container mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-4"
+        >
+          <div class="text-center lg:text-left max-lg:col-[1_/_-1]">
+            Unless explicitly stated on the individual page, all the content on
+            this website is © Radu Dascalu under a Creative Commons BY-NC-ND
+            license, which means you can copy and share the stuff freely, as
+            long as you link back to r9d7.github.io, don’t make money with it,
+            and don’t alter the content. Thanks for reading!
+          </div>
 
-    <Container>
-      <footer class="border-t-2 border-dotted pt-4">
-        <FooterContent />
-      </footer>
-    </Container>
+          <div class="text-center sm:text-left lg:text-center">
+            🔥<a href="mailto:radu.dascalu97@gmail.com" target="_blank"
+              >radu.dascalu97@gmail.com</a
+            >🔥
+          </div>
+
+          <div class="text-center sm:text-right">
+            <p>
+              Powered by {
+                [
+                  { href: "https://astro.build/", displayText: "Astro" },
+                  { href: "https://www.solidjs.com/", displayText: "Solid.js" },
+                  { href: "https://unocss.dev/", displayText: "UnoCSS" },
+                ].map(({ href, displayText }, i) => (
+                  <>
+                    <a href={href} target="_blank">
+                      {displayText}
+                    </a>
+                    ,
+                  </>
+                ))
+              }
+            </p>
+            <p>
+              Hosted on <a
+                href="https://github.com/r9d7/r9d7.github.io/"
+                target="_blank">GitHub</a
+              > Pages
+            </p>
+          </div>
+        </footer>
+      </Container>
+    </div>
   </body>
 </html>
