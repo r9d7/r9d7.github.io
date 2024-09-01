@@ -10,22 +10,30 @@ const allPosts = await Astro.glob("./content/writing/*.md");
 ---
 
 <BaseLayout pageTitle="Home">
-  <ul class="space-y-3">
-    {
-      allPosts
-        .sort((a, b) =>
-          dayjs(a.frontmatter.pubDate).isAfter(dayjs(b.frontmatter.pubDate))
-            ? -1
-            : 1,
-        )
-        .map((post) => (
-          <li>
-            <d class="inline-flex w-24 text-muted-foreground">
-              {dayjs(post.frontmatter.pubDate).format("YYYY • MM")}
-            </d>
-            <a href={post.url}>{post.frontmatter.title}</a>
-          </li>
-        ))
-    }
-  </ul>
+  <section>
+    <h1 class="text-xl md:text-3xl text-accent truncate">
+      a list of the most recent
+    </h1>
+
+    <ul
+      class="flex flex-col text-3xl sm:text-5xl lg:text-7xl space-y-2 [&>li>a]:block"
+    >
+      {
+        allPosts
+          .sort((a, b) =>
+            dayjs(a.frontmatter.pubDate).isAfter(dayjs(b.frontmatter.pubDate))
+              ? -1
+              : 1,
+          )
+          .map((post) => (
+            <li>
+              <a href={post.url} class="truncate">
+                <d>{dayjs(post.frontmatter.pubDate).format("YYYY·MM")}</d> ~{" "}
+                <h1 class="inline font-bold">{post.frontmatter.title}</h1>
+              </a>
+            </li>
+          ))
+      }
+    </ul>
+  </section>
 </BaseLayout>
