@@ -4,37 +4,53 @@ import utc from "dayjs/plugin/utc";
 
 import BaseLayout from "~/layouts/BaseLayout.astro";
 
+import { Container } from "~/components/Container";
+
 dayjs.extend(utc);
 
 const { frontmatter } = Astro.props;
 ---
 
 <BaseLayout pageTitle={frontmatter.title}>
-  <div class="prose max-w-none">
-    <div class="flex gap-1 text-sm text-muted-foreground">
-      {
-        dayjs(frontmatter.pubDate.toString().slice(0, 10)).format(
-          "DD MMMM, YYYY",
-        )
-      }
-
-      <span>•</span>
-
-      {frontmatter.readingTime}
+  <div class="prose max-w-none mx-auto">
+    <div class="flex gap-1 text-sm">
+      <d
+        >{
+          dayjs(frontmatter.pubDate.toString().slice(0, 10)).format(
+            "DD MMMM, YYYY",
+          )
+        }</d
+      >
+      &middot;
+      <span>{frontmatter.readingTime}</span>
     </div>
 
-    <h1>{frontmatter.title}</h1>
-
-    <div class="py-4.5">
-      <img src={frontmatter.image.url} alt={frontmatter.image.alt} />
-    </div>
+    <h1 class="text-3xl sm:text-5xl lg:text-7xl">
+      {frontmatter.title}
+    </h1>
   </div>
+
+  <Container>
+    <div
+      class="bg-center"
+      style={{
+        backgroundImage: `url(${frontmatter.image.url})`,
+      }}
+    >
+      <div class="w-full backdrop-blur-3xl">
+        <img
+          src={frontmatter.image.url}
+          alt={frontmatter.image.alt}
+          class="mx-auto"
+        />
+      </div>
+    </div>
+  </Container>
 
   <article
     class={[
-      "prose max-w-none",
-      "[&>details]-(border-2 border-dotted rounded-lg)",
-      "[&>*:last-child]:mb-0",
+      "prose max-w-none mx-auto text-lg",
+      "[&>details]:border [&>details>ul>li>a]:block",
     ].join(" ")}
   >
     <slot />
