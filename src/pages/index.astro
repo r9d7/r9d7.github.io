@@ -4,12 +4,12 @@ import utc from "dayjs/plugin/utc";
 
 dayjs.extend(utc);
 
-import BaseLayout from "~/layouts/BaseLayout.astro";
+import Shell from "~/layouts/Shell.astro";
 
 const allPosts = await Astro.glob("./content/writing/*.md");
 ---
 
-<BaseLayout pageTitle="Home">
+<Shell pageTitle="Home">
   <section>
     <h1 class="text-xl md:text-3xl text-accent truncate">
       a list of the most recent
@@ -36,4 +36,4 @@ const allPosts = await Astro.glob("./content/writing/*.md");
       }
     </ul>
   </section>
-</BaseLayout>
+</Shell>

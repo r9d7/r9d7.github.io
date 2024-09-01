@@ -2,7 +2,7 @@
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 
-import BaseLayout from "~/layouts/BaseLayout.astro";
+import Shell from "~/layouts/Shell.astro";
 
 import { Container } from "~/components/Container";
 
@@ -11,7 +11,7 @@ dayjs.extend(utc);
 const { frontmatter } = Astro.props;
 ---
 
-<BaseLayout pageTitle={frontmatter.title}>
+<Shell pageTitle={frontmatter.title}>
   <div class="prose max-w-none mx-auto">
     <div class="flex gap-1 text-sm">
       <d
@@ -49,10 +49,10 @@ const { frontmatter } = Astro.props;
 
   <article
     class={[
-      "prose max-w-none mx-auto text-lg",
+      "prose max-w-none mx-auto sm:text-lg",
       "[&>details]:border [&>details>ul>li>a]:block",
     ].join(" ")}
   >
     <slot />
   </article>
-</BaseLayout>
+</Shell>
