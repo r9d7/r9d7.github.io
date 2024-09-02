@@ -57,7 +57,10 @@ const { frontmatter } = Astro.props;
       {
         frontmatter.tags?.map((tag: string) => (
           <li class="">
-            <a href={`/tags/${tag}`} class="bg-accent">
+            <a
+              href={`/tags/${tag}`}
+              class="bg-accent text-accent-foreground border-accent-foreground"
+            >
               #{tag}
             </a>
           </li>
