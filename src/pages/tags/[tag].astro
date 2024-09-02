@@ -13,21 +13,25 @@ type StaticPathsResult = Promise<
 >;
 
 export async function getStaticPaths(): StaticPathsResult {
-  const allPosts = await Astro.glob("../content/blog/*.md");
+  try {
+    const allPosts = await Astro.glob("../content/blog/*.md");
 
-  return [
-    ...new Set(
-      allPosts
-        .map((post) => post.frontmatter.tags)
-        .filter(Boolean)
-        .flat(),
-    ),
-  ].map((tag) => ({
-    params: { tag },
-    props: {
-      posts: allPosts.filter((post) => post.frontmatter.tags?.includes(tag)),
-    },
-  }));
+    return [
+      ...new Set(
+        allPosts
+          .map((post) => post.frontmatter.tags)
+          .filter(Boolean)
+          .flat(),
+      ),
+    ].map((tag) => ({
+      params: { tag },
+      props: {
+        posts: allPosts.filter((post) => post.frontmatter.tags?.includes(tag)),
+      },
+    }));
+  } catch (e) {
+    return [];
+  }
 }
 
 const { tag } = Astro.params;
