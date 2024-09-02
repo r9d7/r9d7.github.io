@@ -1,11 +1,9 @@
 ---
 import type { MarkdownInstance } from "astro";
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
 
 import Shell from "~/layouts/Shell.astro";
 
-dayjs.extend(utc);
+import { PostList } from "~/components/PostList";
 
 type StaticPathsResult = Promise<
   {
@@ -42,25 +40,6 @@ const { posts } = Astro.props;
       All posts tagged with #{tag}
     </h1>
 
-    <ul
-      class="flex flex-col text-3xl sm:text-5xl lg:text-7xl space-y-2 [&>li>a]:block"
-    >
-      {
-        posts
-          .sort((a, b) =>
-            dayjs(a.frontmatter.pubDate).isAfter(dayjs(b.frontmatter.pubDate))
-              ? -1
-              : 1,
-          )
-          .map((post) => (
-            <li>
-              <a href={post.url} class="truncate">
-                <d>{dayjs(post.frontmatter.pubDate).format("YYYY·MM")}</d> ~{" "}
-                <h1 class="inline font-bold">{post.frontmatter.title}</h1>
-              </a>
-            </li>
-          ))
-      }
-    </ul>
+    <PostList posts={posts} />
   </section>
 </Shell>
