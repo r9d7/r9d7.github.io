@@ -1,7 +1,8 @@
 import { rehypeHeadingIds } from "@astrojs/markdown-remark";
 import solidJs from "@astrojs/solid-js";
 import { defineConfig } from "astro/config";
-import remarkCollapse from 'remark-collapse';
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import remarkCollapse from "remark-collapse";
 import remarkToc from "remark-toc";
 import UnoCss from "unocss/astro";
 
@@ -15,8 +16,8 @@ export default defineConfig({
     remarkPlugins: [
       remarkReadingTime,
       [remarkToc, { maxDepth: 3 }],
-      [remarkCollapse, { test: 'toc', summary: "Table of Contents" }],
+      [remarkCollapse, { test: "toc", summary: "Table of Contents" }],
     ],
-    rehypePlugins: [rehypeHeadingIds],
+    rehypePlugins: [rehypeHeadingIds, rehypeAutolinkHeadings],
   },
 });

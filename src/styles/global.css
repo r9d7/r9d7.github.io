@@ -51,6 +51,16 @@ h4,
 h5,
 h6 {
   @apply font-serif;
+
+  & > a {
+    @apply relative ml-6;
+    @apply !focus-(ring-0 ring-offset-0 transition-none);
+
+    &::before {
+      @apply content-['#'];
+      @apply absolute -ml-6;
+    }
+  }
 }
 
 #toc {
