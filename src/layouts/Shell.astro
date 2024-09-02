@@ -2,6 +2,7 @@
 import ViewTransitions from "astro/components/ViewTransitions.astro";
 
 import { Container } from "~/components/Container";
+import { ThemeConfigMenu } from "~/components/ThemeConfigMenu";
 
 import "~/styles/global.css";
 
@@ -10,7 +11,7 @@ const { pageTitle: _pageTitle } = Astro.props;
 const pageTitle = [_pageTitle, "r9d7"].filter(Boolean).join(" / ");
 ---
 
-<html lang="en" transition:animate="none">
+<html lang="en" transition:animate="none" class="group group/html">
   <head>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link
@@ -25,6 +26,36 @@ const pageTitle = [_pageTitle, "r9d7"].filter(Boolean).join(" / ");
     <meta name="generator" content={Astro.generator} />
 
     <title>{pageTitle}</title>
+
+    <script is:inline transition:persist>
+      function getDesiredColorScheme() {
+        if (window?.localStorage?.getItem("color-scheme")) {
+          return window.localStorage.getItem("color-scheme");
+        }
+
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          return "dark";
+        }
+
+        return "light";
+      }
+
+      function setColorScheme() {
+        const currentColorScheme = getDesiredColorScheme();
+
+        localStorage.setItem("color-scheme", currentColorScheme);
+        document.documentElement.setAttribute(
+          "data-color-scheme",
+          currentColorScheme,
+        );
+      }
+
+      setColorScheme();
+
+      document.addEventListener("astro:after-swap", () => {
+        setColorScheme();
+      });
+    </script>
 
     <ViewTransitions />
   </head>
@@ -63,12 +94,13 @@ const pageTitle = [_pageTitle, "r9d7"].filter(Boolean).join(" / ");
                 </a>
               ))
             }
+            <ThemeConfigMenu client:load />
           </nav>
         </header>
       </Container>
 
       <Container class="grow-1">
-        <main>
+        <main transition:animate="fade">
           <slot />
         </main>
       </Container>

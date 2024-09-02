@@ -1,4 +1,5 @@
-:root {
+:root,
+[data-color-scheme="light"]:root {
   --background: 0 0% 97%;
   --foreground: 0 0% 0%;
 
@@ -18,6 +19,13 @@
 
     --accent-foreground: var(--foreground);
   }
+}
+
+[data-color-scheme="dark"]:root {
+  --background: 0 0% 0%;
+  --foreground: 0 0% 97%;
+
+  --accent-foreground: var(--foreground);
 }
 
 html.fluid {
