@@ -4,8 +4,6 @@ import utc from "dayjs/plugin/utc";
 
 import Shell from "~/layouts/Shell.astro";
 
-import { Container } from "~/components/Container";
-
 dayjs.extend(utc);
 
 const { frontmatter } = Astro.props;
@@ -13,7 +11,7 @@ const { frontmatter } = Astro.props;
 
 <Shell pageTitle={frontmatter.title}>
   <div class="prose max-w-none mx-auto">
-    <div class="flex gap-1 text-sm">
+    <div class="flex gap-1">
       <d
         >{
           dayjs(frontmatter.pubDate.toString().slice(0, 10)).format(
@@ -30,22 +28,20 @@ const { frontmatter } = Astro.props;
     </h1>
   </div>
 
-  <Container>
-    <div
-      class="bg-center"
-      style={{
-        backgroundImage: `url(${frontmatter.image.url})`,
-      }}
-    >
-      <div class="w-full backdrop-blur-3xl">
-        <img
-          src={frontmatter.image.url}
-          alt={frontmatter.image.alt}
-          class="mx-auto"
-        />
-      </div>
+  <div
+    class="bg-center"
+    style={{
+      backgroundImage: `url(${frontmatter.image.url})`,
+    }}
+  >
+    <div class="w-full backdrop-blur-3xl">
+      <img
+        src={frontmatter.image.url}
+        alt={frontmatter.image.alt}
+        class="mx-auto"
+      />
     </div>
-  </Container>
+  </div>
 
   <article
     class={[
@@ -55,4 +51,18 @@ const { frontmatter } = Astro.props;
   >
     <slot />
   </article>
+
+  <div class="border-y border-dashed py-4">
+    <ul class="flex flex-wrap gap-2 sm:text-lg">
+      {
+        frontmatter.tags?.map((tag: string) => (
+          <li class="">
+            <a href={`/tags/${tag}`} class="bg-accent">
+              #{tag}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
 </Shell>

@@ -1,0 +1,66 @@
+---
+import type { MarkdownInstance } from "astro";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+
+import Shell from "~/layouts/Shell.astro";
+
+dayjs.extend(utc);
+
+type StaticPathsResult = Promise<
+  {
+    params: { tag: string };
+    props: { posts: MarkdownInstance<Record<string, any>>[] };
+  }[]
+>;
+
+export async function getStaticPaths(): StaticPathsResult {
+  const allPosts = await Astro.glob("../content/writing/*.md");
+
+  return [
+    ...new Set(
+      allPosts
+        .map((post) => post.frontmatter.tags)
+        .filter(Boolean)
+        .flat(),
+    ),
+  ].map((tag) => ({
+    params: { tag },
+    props: {
+      posts: allPosts.filter((post) => post.frontmatter.tags?.includes(tag)),
+    },
+  }));
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+---
+
+<Shell pageTitle={`#${tag}`}>
+  <section>
+    <h1 class="section-heading">
+      All posts tagged with #{tag}
+    </h1>
+
+    <ul
+      class="flex flex-col text-3xl sm:text-5xl lg:text-7xl space-y-2 [&>li>a]:block"
+    >
+      {
+        posts
+          .sort((a, b) =>
+            dayjs(a.frontmatter.pubDate).isAfter(dayjs(b.frontmatter.pubDate))
+              ? -1
+              : 1,
+          )
+          .map((post) => (
+            <li>
+              <a href={post.url} class="truncate">
+                <d>{dayjs(post.frontmatter.pubDate).format("YYYY·MM")}</d> ~{" "}
+                <h1 class="inline font-bold">{post.frontmatter.title}</h1>
+              </a>
+            </li>
+          ))
+      }
+    </ul>
+  </section>
+</Shell>

@@ -61,4 +61,7 @@ export default defineConfig({
         `,
     ],
   ],
+  shortcuts: {
+    "section-heading": "text-xl md:text-3xl text-accent truncate",
+  },
 });
