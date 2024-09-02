@@ -13,7 +13,7 @@ type StaticPathsResult = Promise<
 >;
 
 export async function getStaticPaths(): StaticPathsResult {
-  const allPosts = await Astro.glob("../content/writing/*.md");
+  const allPosts = await Astro.glob("../content/blog/*.md");
 
   return [
     ...new Set(

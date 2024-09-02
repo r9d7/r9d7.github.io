@@ -3,7 +3,7 @@ import Shell from "~/layouts/Shell.astro";
 
 import { PostList } from "~/components/PostList";
 
-const allPosts = await Astro.glob("./content/writing/*.md");
+const allPosts = await Astro.glob("./content/blog/*.md");
 ---
 
 <Shell pageTitle="Home">
