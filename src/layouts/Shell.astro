@@ -1,4 +1,6 @@
 ---
+import ViewTransitions from "astro/components/ViewTransitions.astro";
+
 import { Container } from "~/components/Container";
 
 import "~/styles/global.css";
@@ -8,7 +10,7 @@ const { pageTitle: _pageTitle } = Astro.props;
 const pageTitle = [_pageTitle, "r9d7"].filter(Boolean).join(" / ");
 ---
 
-<html lang="en">
+<html lang="en" transition:animate="none">
   <head>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link
@@ -23,9 +25,13 @@ const pageTitle = [_pageTitle, "r9d7"].filter(Boolean).join(" / ");
     <meta name="generator" content={Astro.generator} />
 
     <title>{pageTitle}</title>
+
+    <ViewTransitions />
   </head>
 
   <body>
+    <!-- <TransitionLoadingIndicator client:load /> -->
+
     <div class="w-full min-h-screen bg-screen flex flex-col p-4 gap-4">
       <Container>
         <header
