@@ -11,14 +11,14 @@
   --radius: 0.75rem;
 }
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root {
     --background: 0 0% 0%;
     --foreground: 0 0% 97%;
 
     --accent-foreground: var(--foreground);
   }
-} */
+}
 
 html.fluid {
   @apply xl:text-[1.27vw];
