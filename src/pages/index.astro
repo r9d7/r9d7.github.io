@@ -18,7 +18,7 @@ const tags = [
 ];
 ---
 
-<Shell title="Home">
+<Shell title="Home" isCenteredLayout={!Boolean(posts.length)}>
   <div class="grid gap-6">
     {
       Boolean(posts.length) ? (
@@ -27,15 +27,13 @@ const tags = [
           <PostList posts={posts} />
         </section>
       ) : (
-        <div class="text-center">
+        <div class="text-center sm:text-xl">
           <CursedFace />
-          <p class="sm:text-xl">
+          <p>
             I was going to write a post, but then I remembered I don't know
             anything.
           </p>
-          <p class="sm:text-xl">
-            Check back when I've fooled myself into thinking I'm an expert!
-          </p>
+          <p>Check back when I've fooled myself into thinking I'm an expert!</p>
         </div>
       )
     }

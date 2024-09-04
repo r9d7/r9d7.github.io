@@ -12,12 +12,16 @@ type Props = {
   title: string;
   description?: string;
   image?: string;
+
+  isCenteredLayout?: boolean;
 };
 
 const {
   title: titleProp,
   description = SITE_DESCRIPTION,
   image = "TODO: ADD PLACEHOLDER",
+
+  isCenteredLayout,
 } = Astro.props;
 
 const title = [titleProp, SITE_TITLE].filter(Boolean).join(" / ");
@@ -134,7 +138,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         </header>
       </Container>
 
-      <Container class="grow-1">
+      <Container
+        class:list={{
+          "grow-1": true,
+          "flex justify-center items-center": isCenteredLayout,
+        }}
+      >
         <main transition:animate="fade">
           <slot />
         </main>
