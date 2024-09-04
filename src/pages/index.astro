@@ -4,21 +4,37 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import Shell from "~/layouts/Shell.astro";
 
 import { PostList } from "~/components/PostList";
+import { TagList } from "~/components/TagList";
 
 const posts: CollectionEntry<"blog">[] = await getCollection("blog");
-
-// try {
-//   allPosts = ;
-// } catch (e) {} // TODO: Get rid of this after 1st post
+const tags = [
+  ...new Set(
+    posts
+      .map((post) => post.data.tags)
+      .filter(Boolean)
+      .flat(),
+  ),
+];
 ---
 
 <Shell title="Home">
-  {
-    Boolean(posts.length) && (
-      <section>
-        <h1 class="section-heading">a list of the most recent</h1>
-        <PostList posts={posts} />
-      </section>
-    )
-  }
+  <div class="grid gap-6">
+    {
+      Boolean(posts.length) && (
+        <section>
+          <h1 class="section-heading">a list of the most recent</h1>
+          <PostList posts={posts} />
+        </section>
+      )
+    }
+    {
+      Boolean(tags.length) && (
+        <section>
+          <h1 class="section-heading">tags</h1>
+
+          <TagList tags={tags as string[]} />
+        </section>
+      )
+    }
+  </div>
 </Shell>

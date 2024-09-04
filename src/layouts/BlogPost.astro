@@ -4,6 +4,7 @@ import type { CollectionEntry } from "astro:content";
 import Shell from "~/layouts/Shell.astro";
 
 import { FormattedDate } from "~/components/FormattedDate";
+import { TagList } from "~/components/TagList";
 
 type Props = CollectionEntry<"blog">["data"];
 
@@ -19,22 +20,7 @@ const { title, description, pubDate, image, readingTime, tags } = Astro.props;
         <span>{readingTime}</span>
       </div>
 
-      {
-        tags?.length && (
-          <ul class="flex flex-wrap gap-2 sm:text-lg">
-            {tags.map((tag: string) => (
-              <li>
-                <a
-                  href={`/tags/${tag}`}
-                  class="bg-accent text-accent-foreground border-accent-foreground"
-                >
-                  #{tag}
-                </a>
-              </li>
-            ))}
-          </ul>
-        )
-      }
+      {tags?.length && <TagList tags={tags} />}
     </div>
 
     <h1 class="text-3xl sm:text-5xl lg:text-7xl">
