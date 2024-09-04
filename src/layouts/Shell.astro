@@ -36,6 +36,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       title={title}
       href={new URL("rss.xml", Astro.site)}
     />
+    <link rel="sitemap" href="/sitemap-index.xml" />
 
     {/* Canonical URL  */}
     <link rel="canonical" href={canonicalURL} />

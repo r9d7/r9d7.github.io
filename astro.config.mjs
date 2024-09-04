@@ -1,4 +1,5 @@
 import { rehypeHeadingIds } from "@astrojs/markdown-remark";
+import sitemap from "@astrojs/sitemap";
 import solidJs from "@astrojs/solid-js";
 import { defineConfig } from "astro/config";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
@@ -11,7 +12,7 @@ import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
 // https://astro.build/config
 export default defineConfig({
   site: "https://r9d7.github.io",
-  integrations: [solidJs(), UnoCss({ injectReset: true })],
+  integrations: [sitemap(), solidJs(), UnoCss({ injectReset: true })],
   markdown: {
     remarkPlugins: [
       remarkReadingTime,
