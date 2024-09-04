@@ -9,7 +9,7 @@ dayjs.extend(utc);
 const { frontmatter } = Astro.props;
 ---
 
-<Shell pageTitle={frontmatter.title}>
+<Shell title={frontmatter.title}>
   <div class="prose max-w-none mx-auto">
     <div class="flex gap-1">
       <d
