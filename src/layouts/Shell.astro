@@ -175,7 +175,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
                   { href: "https://www.solidjs.com/", displayText: "Solid.js" },
                   { href: "https://unocss.dev/", displayText: "UnoCSS" },
                 ]
-                  .map(({ href, displayText }, i) => (
+                  .map(({ href, displayText }) => (
                     <a href={href} target="_blank">
                       {displayText}
                     </a>
