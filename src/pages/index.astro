@@ -1,23 +1,23 @@
 ---
-import { type MarkdownInstance } from "astro";
+import { getCollection, type CollectionEntry } from "astro:content";
 
 import Shell from "~/layouts/Shell.astro";
 
 import { PostList } from "~/components/PostList";
 
-let allPosts: MarkdownInstance<Record<string, any>>[] = [];
+const posts: CollectionEntry<"blog">[] = await getCollection("blog");
 
-try {
-  allPosts = await Astro.glob("./content/blog/*.md");
-} catch (e) {} // TODO: Get rid of this after 1st post
+// try {
+//   allPosts = ;
+// } catch (e) {} // TODO: Get rid of this after 1st post
 ---
 
 <Shell title="Home">
   {
-    Boolean(allPosts.length) && (
+    Boolean(posts.length) && (
       <section>
         <h1 class="section-heading">a list of the most recent</h1>
-        <PostList posts={allPosts} />
+        <PostList posts={posts} />
       </section>
     )
   }

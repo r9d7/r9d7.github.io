@@ -4,21 +4,23 @@ import ViewTransitions from "astro/components/ViewTransitions.astro";
 import { Container } from "~/components/Container";
 import { ThemeConfigMenu } from "~/components/ThemeConfigMenu";
 
+import { SITE_DESCRIPTION, SITE_TITLE } from "~/constants";
+
 import "~/styles/global.css";
 
-interface Props {
+type Props = {
   title: string;
-  description: string;
+  description?: string;
   image?: string;
-}
+};
 
 const {
   title: titleProp,
-  description,
+  description = SITE_DESCRIPTION,
   image = "TODO: ADD PLACEHOLDER",
 } = Astro.props;
 
-const title = [titleProp, "r9d7"].filter(Boolean).join(" / ");
+const title = [titleProp, SITE_TITLE].filter(Boolean).join(" / ");
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
@@ -102,7 +104,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           class="bg-accent text-accent-foreground flex items-center justify-between px-2"
         >
           <a href="/" class="font-serif font-bold border-0 text-3xl -ml-1"
-            >R9D7</a
+            >{SITE_TITLE}</a
           >
 
           <nav class="flex gap-2 sm:gap-4">

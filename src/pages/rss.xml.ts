@@ -1,12 +1,17 @@
+import rss from "@astrojs/rss";
 import { type APIRoute } from "astro";
-import rss, { pagesGlobToRssItems } from "@astrojs/rss";
+import { getCollection } from "astro:content";
 
-export const GET: APIRoute = async (context) =>
-  rss({
-    title: "R9D7 / Blog",
-    description:
-      "Personal internet space of Radu Dascalu. Writing notes about anything that's interesting to me.",
+import { SITE_DESCRIPTION, SITE_TITLE } from "~/constants";
+
+export const GET: APIRoute = async (context) => {
+  const posts = await getCollection("blog");
+
+  return rss({
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     site: context.site!,
-    items: await pagesGlobToRssItems(import.meta.glob("./**/*.md")),
+    items: posts.map((post) => ({ ...post.data, link: `/blog/${post.slug}` })),
     customData: `<language>en-uk</language>`,
   });
+};

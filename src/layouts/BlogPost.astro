@@ -1,0 +1,70 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+import Shell from "~/layouts/Shell.astro";
+
+import { FormattedDate } from "~/components/FormattedDate";
+
+type Props = CollectionEntry<"blog">["data"];
+
+const { title, description, pubDate, image, readingTime, tags } = Astro.props;
+---
+
+<Shell title={title} description={description}>
+  <div class="prose max-w-none mx-auto">
+    <div class="flex gap-1">
+      <FormattedDate date={pubDate} />
+      &middot;
+      <span>{readingTime}</span>
+    </div>
+
+    <h1 class="text-3xl sm:text-5xl lg:text-7xl">
+      {title}
+    </h1>
+  </div>
+
+  {
+    image && (
+      <div
+        class="bg-center"
+        style={{
+          backgroundImage: `url(${image.url})`,
+        }}
+      >
+        <div class="w-full backdrop-blur-3xl">
+          <img src={image.url} alt={image.alt} class="mx-auto" />
+        </div>
+      </div>
+    )
+  }
+
+  <article
+    class={[
+      "prose max-w-none mx-auto sm:text-lg",
+      "[&>details]:border [&>details>ul>li>a]:block",
+    ].join(" ")}
+  >
+    <slot />
+  </article>
+
+  {
+    tags?.length ? (
+      <div class="border-y border-dashed py-4">
+        <ul class="flex flex-wrap gap-2 sm:text-lg">
+          {tags.map((tag: string) => (
+            <li class="">
+              <a
+                href={`/tags/${tag}`}
+                class="bg-accent text-accent-foreground border-accent-foreground"
+              >
+                #{tag}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ) : (
+      <div class="border-t border-dashed" />
+    )
+  }
+</Shell>
