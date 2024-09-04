@@ -3,6 +3,7 @@ import { getCollection, type CollectionEntry } from "astro:content";
 
 import Shell from "~/layouts/Shell.astro";
 
+import { CursedFace } from "~/components/CursedFace";
 import { PostList } from "~/components/PostList";
 import { TagList } from "~/components/TagList";
 
@@ -20,11 +21,22 @@ const tags = [
 <Shell title="Home">
   <div class="grid gap-6">
     {
-      Boolean(posts.length) && (
+      Boolean(posts.length) ? (
         <section>
           <h1 class="section-heading">a list of the most recent</h1>
           <PostList posts={posts} />
         </section>
+      ) : (
+        <div class="text-center">
+          <CursedFace />
+          <p class="sm:text-xl">
+            I was going to write a post, but then I remembered I don't know
+            anything.
+          </p>
+          <p class="sm:text-xl">
+            Check back when I've fooled myself into thinking I'm an expert!
+          </p>
+        </div>
       )
     }
     {

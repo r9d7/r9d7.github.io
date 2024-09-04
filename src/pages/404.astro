@@ -1,11 +1,21 @@
 ---
 import Shell from "~/layouts/Shell.astro";
+
+import { CursedFace } from "~/components/CursedFace";
 ---
 
 <Shell title="Page not found">
   <div class="text-center">
-    <h1 class="text-[20vw] font-bold">404</h1>
-    <p class="text-xl">
+    <div class="group/cursed inline-block">
+      <p class="text-accent">DO NOT HOVER! YOU HAVE BEEN WARNED</p>
+
+      <h1 class="text-[10vw] font-bold leading-none group-hover/cursed:hidden">
+        404
+      </h1>
+      <CursedFace class="!hidden !group-hover/cursed:flex py-3.4" />
+    </div>
+
+    <p class="sm:text-xl">
       Congratulations! You've discovered the quantum page - it both exists and
       doesn't.
     </p>
